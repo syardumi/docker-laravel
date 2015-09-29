@@ -45,7 +45,7 @@ Running a container
 **2.** Run the Docker image as a new Docker container:
 
 	docker run -d \
-	-p 80:80 -p 443:443 -p 5432:5432 -p 22:22 \
+	-p 80:80 -p 443:443 -p 5432:5432 \
 	-v /home/app:/share \
 	--restart=always \
 	--name=appname \
