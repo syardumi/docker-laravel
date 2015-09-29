@@ -32,9 +32,7 @@ RUN /provision/provision.sh
 # ------------------------------------------------------------------------------
 
 # Expose ports
-EXPOSE 80
-EXPOSE 443
-EXPOSE 5432
+EXPOSE 80 443 5432
 
 # ------------------------------------------------------------------------------
 # Set locale (support UTF-8 in the container terminal)
