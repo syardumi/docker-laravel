@@ -10,7 +10,7 @@
 
 FROM ubuntu:14.04
 
-MAINTAINER Mark Macdonald <mark.t.macdonald@googlemail.com>
+MAINTAINER Steve Yardumian
 
 # Set correct environment variables
 ENV HOME /root
