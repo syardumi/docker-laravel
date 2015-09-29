@@ -40,7 +40,7 @@ Running a container
 
 **1.** Download the public Docker image from Dockerhub:
 
-	docker pull mtmacdonald/docker-laravel:1.4.0
+	docker pull syardumi/docker-laravel:1.4.0
 
 **2.** Run the Docker image as a new Docker container:
 
@@ -49,7 +49,7 @@ Running a container
 	-v /home/app:/share \
 	--restart=always \
 	--name=appname \
-	mtmacdonald/docker-laravel:1.4.0
+	syardumi/docker-laravel:1.4.0
 
 Replace '/home/app' with the path to the Laravel application's root directory in the host. This directory is a shared 
 volume and so can be used to access the application files in either the host or the container.
