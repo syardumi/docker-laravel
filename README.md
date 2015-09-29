@@ -10,7 +10,7 @@ These services run with process supervision, using [Supervisor](http://superviso
 
 - nginx
 - php5-fpm (with php5-mcrypt, php5-mysqlnd, and php5-curl)
-- mysql-server
+- postgresql-server
 - openssh-server
 - cron
 - beanstalkd
@@ -26,7 +26,7 @@ These packages are preinstalled:
 - nano
 - git
 - php5-cli
-- mysql-client
+- postgresql
 - composer
 - curl
 - phantomjs
@@ -40,16 +40,16 @@ Running a container
 
 **1.** Download the public Docker image from Dockerhub:
 
-	docker pull syardumi/docker-laravel:1.4.0
+	docker pull syardumi/docker-laravel
 
 **2.** Run the Docker image as a new Docker container:
 
 	docker run -d \
-	-p 80:80 -p 443:443 -p 3306:3306 \
+	-p 80:80 -p 443:443 -p 5432:5432 -p 22:22 \
 	-v /home/app:/share \
 	--restart=always \
 	--name=appname \
-	syardumi/docker-laravel:1.4.0
+	syardumi/docker-laravel
 
 Replace '/home/app' with the path to the Laravel application's root directory in the host. This directory is a shared 
 volume and so can be used to access the application files in either the host or the container.
