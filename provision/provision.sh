@@ -73,7 +73,7 @@ echo "daemon off;" >> /etc/nginx/nginx.conf
 # ------------------------------------------------------------------------------
 
 # install PHP, PHP mcrypt extension and PHP MySQL native driver
-apt-get -y install php5-fpm php5-cli php5-mcrypt php5-mysqlnd
+apt-get -y install php5-cli php5-mcrypt php5-pgsql php5-dev php-pear php5-apcu php5-json php5-curl php5-gd php5-gmp php5-imap php5-memcached php5-fpm #php5-mysqlnd 
 
 # copy FPM and CLI PHP configurations
 cp /provision/conf/php.fpm.ini /etc/php5/fpm/php.ini
@@ -90,11 +90,14 @@ sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php5/fpm/php-fpm.conf
 # ------------------------------------------------------------------------------
 
 # install MySQL client and server
-apt-get -y install mysql-client
-apt-get -y install mysql-server pwgen
+#apt-get -y install mysql-client
+#apt-get -y install mysql-server pwgen
+
+#install postgreSQL client and server
+apt-get -y install postgresql-9.4 postgresql-contrib-9.4 phppgadmin
 
 # copy MySQL configuration
-cp /provision/conf/my.cnf /etc/mysql/my.cnf
+#cp /provision/conf/my.cnf /etc/mysql/my.cnf
 
 # ------------------------------------------------------------------------------
 # Node and npm
@@ -123,6 +126,8 @@ mv composer.phar /usr/local/bin/composer
 # ------------------------------------------------------------------------------
 
 apt-get -y install beanstalkd
+
+apt-get -y install memcached
 
 # ------------------------------------------------------------------------------
 # wkhtmltopdf (PDF generator)
