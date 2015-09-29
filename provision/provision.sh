@@ -99,6 +99,9 @@ apt-get -y install postgresql-9.4 postgresql-contrib-9.4 phppgadmin
 # copy MySQL configuration
 #cp /provision/conf/my.cnf /etc/mysql/my.cnf
 
+# copy PostgreSQL config
+cp /provision/conf/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
+
 # ------------------------------------------------------------------------------
 # Node and npm
 # ------------------------------------------------------------------------------
