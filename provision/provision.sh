@@ -94,13 +94,13 @@ sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php5/fpm/php-fpm.conf
 #apt-get -y install mysql-server pwgen
 
 #install postgreSQL client and server
-apt-get -y install postgresql-9.4 postgresql-contrib-9.4 phppgadmin
+apt-get -y install phppgadmin #postgresql-9.4 postgresql-contrib-9.4
 
 # copy MySQL configuration
 #cp /provision/conf/my.cnf /etc/mysql/my.cnf
 
 # copy PostgreSQL config
-cp /provision/conf/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
+#cp /provision/conf/pg_hba.conf /etc/postgresql/9.4/main/pg_hba.conf
 
 # ------------------------------------------------------------------------------
 # Node and npm
