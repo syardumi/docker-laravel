@@ -113,8 +113,8 @@ sudo apt-get install -y nodejs
 # Git version control
 # ------------------------------------------------------------------------------
 
-# install git
-apt-get -y install git
+# install git and unzip
+apt-get -y install git unzip
 
 # ------------------------------------------------------------------------------
 # Composer PHP dependency manager
@@ -142,6 +142,10 @@ apt-get -y install memcached
 
 apt-get -y install libxrender1
 cp /provision/bin/wkhtmltopdf /usr/bin/wkhtmltopdf
+
+#bower and gulp
+npm install -g bower
+npm install -g gulp
 
 # ------------------------------------------------------------------------------
 # PhantomJS (headless browser)
