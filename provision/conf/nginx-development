@@ -4,12 +4,15 @@
 server {
         client_max_body_size 500M;
         listen   80 default_server;
+        server_name test.app
 
         root /share/public/;
         index index.php index.html index.htm;
 
+        charset utf-8;
+
         location / {
-             try_files $uri $uri/ /index.php$is_args$args;
+            try_files $uri $uri/ /index.php?$query_string;
         }
 
         # pass the PHP scripts to FastCGI server listening on /var/run/php5-fpm.sock
@@ -19,5 +22,9 @@ server {
                 fastcgi_index index.php;
                 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
                 include fastcgi_params;
+        }
+        
+        location ~ /\.ht {
+            deny all;
         }
 }
