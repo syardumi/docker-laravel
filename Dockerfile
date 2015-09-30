@@ -27,6 +27,8 @@ RUN mkdir /provision
 ADD provision /provision
 RUN /provision/provision.sh
 
+RUN usermod -u 1000 www-data
+
 # ------------------------------------------------------------------------------
 # Prepare image for use
 # ------------------------------------------------------------------------------
