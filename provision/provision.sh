@@ -50,10 +50,10 @@ chmod 600 /root/.ssh/authorized_keys
 apt-get -y install cron
 
 # ------------------------------------------------------------------------------
-# nano
+# vim
 # ------------------------------------------------------------------------------
 
-apt-get -y install nano
+apt-get -y install vim
 
 # ------------------------------------------------------------------------------
 # NGINX web server
@@ -94,7 +94,7 @@ sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php5/fpm/php-fpm.conf
 #apt-get -y install mysql-server pwgen
 
 #install postgreSQL client and server
-apt-get -y install phppgadmin #postgresql-9.4 postgresql-contrib-9.4
+#apt-get -y install phppgadmin #postgresql-9.4 postgresql-contrib-9.4
 
 # copy MySQL configuration
 #cp /provision/conf/my.cnf /etc/mysql/my.cnf
