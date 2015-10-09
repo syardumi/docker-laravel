@@ -36,7 +36,7 @@ These packages are preinstalled:
 - python (*dependency for supervisord)
 - default-jre (*dependency for Selenium server)
 
-**I've modified this container image in 2 key places for mirroring a production run. First, I've removed all trace of a DB instance running locally on the container - either MySQL or PostgreSQL. Ideally, you'd want either of them running on a separate container or via a dynamically hosted instance (even for Dev environments). Second, self-signed SSL cert/key pair have been introduced during provisioning, though for production you will need to replace them with a CA signed cert/key. No matter what the project or content request/response, use SSL as a means for securing any HTTP traffic. Nginx is configured to handle the automatic redirect, as well. **
+__I've modified this container image in 2 key places for mirroring a production run. First, I've removed all trace of a DB instance running locally on the container - either MySQL or PostgreSQL. Ideally, you'd want either of them running on a separate container or via a dynamically hosted instance (even for Dev environments). Second, self-signed SSL cert/key pair have been introduced during provisioning, though for production you will need to replace them with a CA signed cert/key. No matter what the project or content request/response, use SSL as a means for securing any HTTP traffic. Nginx is configured to handle the automatic redirect, as well.__
 
 Running a container
 -------------------
