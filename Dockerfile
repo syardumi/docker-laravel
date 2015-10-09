@@ -23,12 +23,12 @@ CMD ["/usr/local/bin/supervisord", "-c", "/etc/supervisord.conf"]
 # Provision the server
 # ------------------------------------------------------------------------------
 
+#PATCHED for when mounting a Mac OS X folder in VBox
+RUN usermod -u 1000 www-data
+
 RUN mkdir /provision
 ADD provision /provision
 RUN /provision/provision.sh
-
-#PATCHED for when mounting a Mac OS X folder in VBox
-RUN usermod -u 1000 www-data
 
 # ------------------------------------------------------------------------------
 # Prepare image for use
