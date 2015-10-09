@@ -73,7 +73,7 @@ echo "daemon off;" >> /etc/nginx/nginx.conf
 # ------------------------------------------------------------------------------
 
 # install PHP, PHP mcrypt extension and PHP MySQL native driver
-apt-get -y install php5-cli php5-mcrypt php5-pgsql php5-dev php-pear php5-apcu php5-json php5-curl php5-gd php5-gmp php5-imap php5-memcached php5-fpm #php5-mysqlnd 
+apt-get -y install php5-cli php5-mcrypt php5-pgsql php5-dev php-pear php5-apcu php5-json php5-curl php5-gd php5-gmp php5-imap php5-memcached php5-fpm php5-mysqlnd 
 
 # copy FPM and CLI PHP configurations
 cp /provision/conf/php.fpm.ini /etc/php5/fpm/php.ini
@@ -146,6 +146,17 @@ cp /provision/bin/wkhtmltopdf /usr/bin/wkhtmltopdf
 #bower and gulp
 npm install -g bower
 npm install -g gulp
+
+#SSL certs (dev only)
+mkdir /etc/nginx/ssl
+openssl req -subj "/C=US/ST=PA/L=Somewhere/O=SomeCompany/OU=SomeDepartment/CN=test.app" -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+
+#nginx won't be running b/c of incomplete ssl cert directives, so run it here
+supervisorctl start nginx
+
+#www-data user must own the cache locations in order to read/write
+chown -R www-data /share/storage
+chown -R www-data /share/bootstrap/cache
 
 # ------------------------------------------------------------------------------
 # PhantomJS (headless browser)
