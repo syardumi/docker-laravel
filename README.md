@@ -10,10 +10,10 @@ These services run with process supervision, using [Supervisor](http://superviso
 
 - nginx
 - php5-fpm (with php5-mcrypt, php5-mysqlnd, and php5-curl)
-- postgresql-server
 - openssh-server
 - cron
 - beanstalkd
+- memcached
 
 Additionally, these services can optionally be enabled for process supervision (see below):
 
@@ -24,9 +24,10 @@ These packages are preinstalled:
 
 - nodejs with npm
 - nano
+- bower
+- gulp
 - git
 - php5-cli
-- postgresql
 - composer
 - curl
 - phantomjs
@@ -34,6 +35,8 @@ These packages are preinstalled:
 - php5-xdebug (installed, but disabled by default, see below)
 - python (*dependency for supervisord)
 - default-jre (*dependency for Selenium server)
+
+**I've modified this container image in 2 key places for mirroring a production run. First, I've removed all trace of a DB instance running locally on the container - either MySQL or PostgreSQL. Ideally, you'd want either of them running on a separate container or via a dynamically hosted instance (even for Dev environments). Second, self-signed SSL cert/key pair have been introduced during provisioning, though for production you will need to replace them with a CA signed cert/key. No matter what the project or content request/response, use SSL as a means for securing any HTTP traffic. Nginx is configured to handle the automatic redirect, as well. **
 
 Running a container
 -------------------
@@ -45,14 +48,13 @@ Running a container
 **2.** Run the Docker image as a new Docker container:
 
 	docker run -d \
-	-p 80:80 -p 443:443 -p 5432:5432 \
+	-p 80:80 -p 443:443 \
 	-v /home/app:/share \
 	--restart=always \
 	--name=appname \
 	syardumi/docker-laravel
 
-Replace '/home/app' with the path to the Laravel application's root directory in the host. This directory is a shared 
-volume and so can be used to access the application files in either the host or the container.
+Replace '/home/app' with the local path to the Laravel application's root directory in the host. This directory is a shared volume and so can be used to access the application files in either the host or the container. '/share' represents the path in the container.
 
 Connecting to a container with SSH
 ----------------------------------
@@ -65,7 +67,7 @@ with an insecure key that should be replaced for production use. To connect with
 **1.** Fetch the insecure SSH key:
 
 	cd /home/
-	curl -o insecure_key -fSL https://raw.githubusercontent.com/mtmacdonald/docker-laravel/master/provision/keys/insecure_key
+	curl -o insecure_key -fSL https://raw.githubusercontent.com/syardumi/docker-laravel/master/provision/keys/insecure_key
 	chown `whoami` insecure_key
 	chmod 600 insecure_key
 
@@ -110,7 +112,7 @@ Process status
 Installing Laravel
 ------------------
 
-Laravel is not bundled in the Docker image. Laravel, or your own application, need to be installed manually:
+Laravel (the skeleton framework for an app) is not bundled in the Docker image. Laravel skeleton, or your own application, need to be installed manually:
 
 *In the container*:
 
