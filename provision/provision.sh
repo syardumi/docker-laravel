@@ -96,6 +96,9 @@ sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php5/fpm/php-fpm.conf
 #install postgreSQL client and server
 #apt-get -y install phppgadmin #postgresql-9.4 postgresql-contrib-9.4
 
+#install postgreSQL client binaries
+apt-get -y install postgresql-client-9.4
+
 # copy MySQL configuration
 #cp /provision/conf/my.cnf /etc/mysql/my.cnf
 
@@ -153,6 +156,7 @@ openssl req -subj "/C=US/ST=PA/L=Somewhere/O=SomeCompany/OU=SomeDepartment/CN=te
 
 #nginx won't be running b/c of incomplete ssl cert directives, so run it here
 supervisorctl start nginx
+supervisorctl restart php5-fpm
 
 #www-data user must own the cache locations in order to read/write
 chown -R www-data /var/www/html/storage
