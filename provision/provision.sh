@@ -155,8 +155,8 @@ openssl req -subj "/C=US/ST=PA/L=Somewhere/O=SomeCompany/OU=SomeDepartment/CN=te
 supervisorctl start nginx
 
 #www-data user must own the cache locations in order to read/write
-chown -R www-data /share/storage
-chown -R www-data /share/bootstrap/cache
+chown -R www-data /var/www/html/storage
+chown -R www-data /var/www/html/bootstrap/cache
 
 # ------------------------------------------------------------------------------
 # PhantomJS (headless browser)
